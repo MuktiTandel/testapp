@@ -10,7 +10,6 @@ class MainScreen extends StatelessWidget {
         title: Text('home'),
       ),
       body: Center(
-        child: Text('home'),
       ),
     );
   }

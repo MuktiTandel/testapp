@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -15,6 +16,11 @@ class _Whatsnew_screenState extends State<Whatsnew_screen> with SingleTickerProv
   late AnimationController animationController;
 
   late Animation<double> animation;
+
+  int x = 0;
+  int y = 30;
+
+  Timer? timer;
 
   @override
   void initState() {
@@ -43,11 +49,39 @@ class _Whatsnew_screenState extends State<Whatsnew_screen> with SingleTickerProv
       });
     });
 
+    timer = Timer.periodic(Duration(seconds:  5), (timer) {
+      change_eye_position();
+    });
+
   }
+
+  void change_eye_position(){
+    Future.delayed(Duration(seconds: 1), (){
+      x = 0;
+      y = 40;
+    });
+    Future.delayed(Duration(seconds: 2), (){
+      x = -5;
+      y = 30;
+    });
+    Future.delayed(Duration(seconds: 3), (){
+      x = 5;
+      y = 20;
+    });
+    Future.delayed(Duration(seconds: 4), (){
+      x = 5;
+      y = 30;
+    });
+    setState(() {
+    });
+  }
+
+
 
   @override
   void dispose() {
     animationController.dispose();
+    timer?.cancel();
     super.dispose();
   }
 
@@ -64,7 +98,14 @@ class _Whatsnew_screenState extends State<Whatsnew_screen> with SingleTickerProv
             children: [
               CustomPaint(
                 size: Size(MediaQuery.of(context).size.width,MediaQuery.of(context).size.width),
-                painter: DrawCircle(center: {"x" : 190, 'y' : 200}, radius: 100, color: Colors.yellow, controller: animationController),
+                painter: DrawCircle(
+                    center: {"x" : 180, 'y' : 200},
+                    radius: 100,
+                    color: Colors.yellow,
+                    controller: animationController,
+                  x: x,
+                  y: y
+                ),
               ),
             ],
           ),

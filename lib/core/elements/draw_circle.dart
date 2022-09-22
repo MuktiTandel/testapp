@@ -8,12 +8,16 @@ class DrawCircle extends CustomPainter {
   final double radius;
   final Color color;
   final AnimationController controller;
+  final int x;
+  final int y;
 
   DrawCircle({
     required this.center,
     required this.radius,
     required this.color,
-    required this.controller
+    required this.controller,
+    required this.x,
+    required this.y
   });
 
   @override
@@ -49,11 +53,11 @@ class DrawCircle extends CustomPainter {
     void draweye(double xOffset){
       canvas.drawOval(Rect.fromCenter(center: Offset(center.dx - xOffset, center.dy - 30), width: 25, height: 50), brush);
       canvas.drawCircle(
-          Offset(center.dx - xOffset , center.dy -30), 6, Paint()..color = Colors.white);
+          Offset(center.dx - xOffset + x, center.dy - y), 6, Paint()..color = Colors.white);
     }
 
     void drawEyeLid(double xOffset) {
-      canvas.drawOval(Rect.fromCircle( center: Offset(center.dx + xOffset -10, center.dy -  eyeAnimation.value + 23), radius: 28),
+      canvas.drawOval(Rect.fromCircle( center: Offset(center.dx + xOffset -10, center.dy  + 23), radius: 28),
           Paint()
             ..color = Colors.yellow
             ..style = PaintingStyle.fill

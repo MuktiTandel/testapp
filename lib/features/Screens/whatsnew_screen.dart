@@ -99,7 +99,6 @@ class _Whatsnew_screenState extends State<Whatsnew_screen> with SingleTickerProv
               CustomPaint(
                 size: Size(MediaQuery.of(context).size.width,MediaQuery.of(context).size.width),
                 painter: DrawCircle(
-                    center: {"x" : 180, 'y' : 200},
                     radius: 100,
                     color: Colors.yellow,
                     controller: animationController,

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 class DrawCircle extends CustomPainter {
 
-  final Map<String, double> center;
   final double radius;
   final Color color;
   final AnimationController controller;
@@ -12,7 +11,6 @@ class DrawCircle extends CustomPainter {
   final int y;
 
   DrawCircle({
-    required this.center,
     required this.radius,
     required this.color,
     required this.controller,
@@ -33,7 +31,7 @@ class DrawCircle extends CustomPainter {
 
     final rect = Rect.fromLTRB(50, 100, 250, 200);
 
-    canvas.drawCircle(Offset(center['x']!, center['y']!), radius, brush);
+    canvas.drawCircle(offset, radius, brush);
     drawOval(canvas, size);
     canvas.drawArc(Rect.fromCenter(center: smileCenter, width: 90, height: 60), 0, pi, false, Paint()..color = Colors.black..style = PaintingStyle.stroke..strokeWidth = 5);
   }
